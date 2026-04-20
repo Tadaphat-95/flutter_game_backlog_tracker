@@ -1,0 +1,28 @@
+name: flutter_game_backlog_tracker
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # ✅ เพิ่มตรงนี้
+  supabase_flutter: ^2.3.4
+  image_picker: ^1.0.7
+  flutter_local_notifications: ^17.0.0
+  timezone: ^0.9.3
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
