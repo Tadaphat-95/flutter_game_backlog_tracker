@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_game_backlog_tracker/models/game.dart';
@@ -130,7 +129,6 @@ class _UpdateDeleteGameUiState extends State<UpdateDeleteGameUi> {
 
     await service.updateGame(widget.game!.id!, game);
 
-    // อัปเดต Notification
     final notifId = widget.game!.id.hashCode;
     await NotificationService.cancelNotification(notifId);
     if (reminderEnabled) {
@@ -143,9 +141,11 @@ class _UpdateDeleteGameUiState extends State<UpdateDeleteGameUi> {
       );
     }
 
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('บันทึกการแก้ไขสำเร็จ'), backgroundColor: Colors.green),
     );
+    if (!mounted) return;
     Navigator.pop(context);
   }
 
@@ -173,9 +173,11 @@ class _UpdateDeleteGameUiState extends State<UpdateDeleteGameUi> {
               }
               await NotificationService.cancelNotification(widget.game!.id.hashCode);
               await service.deleteGame(widget.game!.id!);
+              if (!mounted) return;
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('ลบเกมสำเร็จ'), backgroundColor: Colors.green),
               );
+              if (!mounted) return;
               Navigator.pop(context);
               Navigator.pop(context);
             },
@@ -267,7 +269,7 @@ class _UpdateDeleteGameUiState extends State<UpdateDeleteGameUi> {
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         decoration: BoxDecoration(
-                          color: isActive ? colors[s]!.withOpacity(0.2) : const Color(0xFF1A1A1A),
+                          color: isActive ? colors[s]!.withValues(alpha: 0.2) : const Color(0xFF1A1A1A),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: isActive ? colors[s]! : const Color(0xFF2A2A2A),
@@ -336,7 +338,7 @@ class _UpdateDeleteGameUiState extends State<UpdateDeleteGameUi> {
                       const Text('แจ้งเตือนให้เล่น', style: TextStyle(color: Color(0xFFF0F0F0), fontSize: 14)),
                       Switch(
                         value: reminderEnabled,
-                        activeColor: const Color(0xFFF5C14A),
+                        activeThumbColor: const Color(0xFFF5C14A),
                         onChanged: (val) => setState(() => reminderEnabled = val),
                       ),
                     ],

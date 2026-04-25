@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_game_backlog_tracker/models/game.dart';
@@ -113,7 +112,13 @@ class _AddGameUiState extends State<AddGameUi> {
         minute: reminderTime.minute,
       );
     }
-
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('เพิ่มเกมสำเร็จ'),
+        backgroundColor: Colors.green,
+      ),
+    );
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('เพิ่มเกมสำเร็จ'),
@@ -198,7 +203,7 @@ class _AddGameUiState extends State<AddGameUi> {
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         decoration: BoxDecoration(
-                          color: isActive ? colors[s]!.withOpacity(0.2) : const Color(0xFF1A1A1A),
+                          color: isActive ? colors[s]!.withValues(alpha: 0.2) : const Color(0xFF1A1A1A),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: isActive ? colors[s]! : const Color(0xFF2A2A2A),
@@ -267,7 +272,7 @@ class _AddGameUiState extends State<AddGameUi> {
                       const Text('แจ้งเตือนให้เล่น', style: TextStyle(color: Color(0xFFF0F0F0), fontSize: 14)),
                       Switch(
                         value: reminderEnabled,
-                        activeColor: const Color(0xFFF5C14A),
+                        activeThumbColor: const Color(0xFFF5C14A),
                         onChanged: (val) => setState(() => reminderEnabled = val),
                       ),
                     ],

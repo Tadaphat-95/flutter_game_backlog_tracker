@@ -11,16 +11,15 @@ class SplashScreenUi extends StatefulWidget {
 class _SplashScreenUiState extends State<SplashScreenUi> {
   @override
   void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ShowAllGameUi(),
-        ),
-      );
-    });
-  }
+  super.initState();
+  Future.delayed(const Duration(seconds: 3), () {
+    if (!mounted) return; 
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const ShowAllGameUi()),
+    );
+  });
+}
 
   @override
   Widget build(BuildContext context) {

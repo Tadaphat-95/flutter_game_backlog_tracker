@@ -6,7 +6,6 @@ class NotificationService {
   static final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
 
-  // เริ่มต้น Notification Service
   static Future<void> init() async {
     tz.initializeTimeZones();
     tz.setLocalLocation(tz.getLocation('Asia/Bangkok'));
@@ -29,15 +28,7 @@ class NotificationService {
     await _notifications.initialize(settings);
   }
 
-  // ขอ Permission (Android 13+)
-  static Future<void> requestPermission() async {
-    await _notifications
-        .resolvePlatformSpecificImplementation
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestNotificationsPermission();
-  }
 
-  // แจ้งเตือนทันที
   static Future<void> showNotification({
     required int id,
     required String title,
@@ -60,7 +51,6 @@ class NotificationService {
     await _notifications.show(id, title, body, details);
   }
 
-  // แจ้งเตือนตามเวลาที่กำหนด (รายวัน)
   static Future<void> scheduleDailyNotification({
     required int id,
     required String title,
@@ -89,11 +79,12 @@ class NotificationService {
       _nextInstanceOfTime(hour, minute),
       details,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      matchDateTimeComponents: DateTimeComponents.time, // ทำซ้ำรายวัน
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.time,
     );
   }
 
-  // แจ้งเตือนเกินเวลา
   static Future<void> scheduleTimeLimitNotification({
     required int id,
     required String gameName,
@@ -124,20 +115,19 @@ class NotificationService {
       scheduledTime,
       details,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
-  // ยกเลิกการแจ้งเตือน
   static Future<void> cancelNotification(int id) async {
     await _notifications.cancel(id);
   }
 
-  // ยกเลิกทั้งหมด
   static Future<void> cancelAll() async {
     await _notifications.cancelAll();
   }
 
-  // คำนวณเวลาถัดไปที่จะแจ้งเตือน
   static tz.TZDateTime _nextInstanceOfTime(int hour, int minute) {
     final now = tz.TZDateTime.now(tz.local);
     tz.TZDateTime scheduled = tz.TZDateTime(

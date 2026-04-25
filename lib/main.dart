@@ -9,12 +9,12 @@ void main() async {
   // เริ่มต้น Supabase
   await Supabase.initialize(
     url: 'https://fpjxnwpkuotcjlyapshw.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwanhud3BrdW90Y2pseWFwc2h3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjUwODgsImV4cCI6MjA5MjI0MTA4OH0.MnjomYpBgULYvLBFEypg1jhnVfa_vNadIkNCm9ogbQA',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwanhud3BrdW90Y2pseWFwc2h3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjUwODgsImV4cCI6MjA5MjI0MTA4OH0.MnjomYpBgULYvLBFEypg1jhnVfa_vNadIkNCm9ogbQA',
   );
 
   // เริ่มต้น Notification
   await NotificationService.init();
-  await NotificationService.requestPermission();
 
   runApp(const MyApp());
 }
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
           hintStyle: const TextStyle(color: Color(0xFF555555)),
           labelStyle: const TextStyle(color: Color(0xFF888888)),
         ),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: const Color(0xFF1A1A1A),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),

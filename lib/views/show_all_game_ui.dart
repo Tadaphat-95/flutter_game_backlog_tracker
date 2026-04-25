@@ -52,23 +52,56 @@ class _ShowAllGameUiState extends State<ShowAllGameUi> {
     }
   }
 
+  void showReviewDialog(Game game) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color(0xFF1A1A1A),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Row(
+          children: [
+            const Icon(Icons.rate_review_rounded, color: Color(0xFFF5C14A), size: 20),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                game.gameName ?? '',
+                style: const TextStyle(color: Color(0xFFF0F0F0), fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          game.review!,
+          style: const TextStyle(color: Color(0xFF888888), fontSize: 14, height: 1.5),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('ปิด', style: TextStyle(color: Color(0xFFF5C14A))),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0F0F0F),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0F0F0F),
-        title: const Text(
-          'My Games',
-          style: TextStyle(
-            color: Color(0xFFF0F0F0),
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Text(
-          '${games.length} games tracked',
-          style: const TextStyle(color: Color(0xFF555555), fontSize: 12),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'My Games',
+              style: TextStyle(color: Color(0xFFF0F0F0), fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              '${games.length} games tracked',
+              style: const TextStyle(color: Color(0xFF555555), fontSize: 12),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -174,6 +207,7 @@ class _ShowAllGameUiState extends State<ShowAllGameUi> {
                                       ),
                               ),
                               const SizedBox(width: 14),
+
                               // ข้อมูลเกม
                               Expanded(
                                 child: Column(
@@ -190,13 +224,9 @@ class _ShowAllGameUiState extends State<ShowAllGameUi> {
                                     const SizedBox(height: 4),
                                     Text(
                                       '${game.genre ?? '-'} · ${game.hoursPlayed?.toStringAsFixed(0) ?? 0}h',
-                                      style: const TextStyle(
-                                        color: Color(0xFF666666),
-                                        fontSize: 12,
-                                      ),
+                                      style: const TextStyle(color: Color(0xFF666666), fontSize: 12),
                                     ),
                                     const SizedBox(height: 8),
-                                    // Progress bar
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(4),
                                       child: LinearProgressIndicator(
@@ -212,21 +242,42 @@ class _ShowAllGameUiState extends State<ShowAllGameUi> {
                                 ),
                               ),
                               const SizedBox(width: 12),
-                              // Status tag
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                                decoration: BoxDecoration(
-                                  color: statusColor(game.status).withOpacity(0.15),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  statusLabel(game.status),
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w500,
-                                    color: statusColor(game.status),
+
+                              // Status + Review button
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                    decoration: BoxDecoration(
+                                      color: statusColor(game.status).withValues(alpha: 0.15),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Text(
+                                      statusLabel(game.status),
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w500,
+                                        color: statusColor(game.status),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  // ✅ ปุ่ม review (แสดงเฉพาะเมื่อมี review)
+                                  if (game.review != null && game.review!.isNotEmpty)
+                                    GestureDetector(
+                                      onTap: () => showReviewDialog(game),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 6),
+                                        child: Row(
+                                          children: const [
+                                            Icon(Icons.rate_review_rounded, color: Color(0xFFF5C14A), size: 14),
+                                            SizedBox(width: 4),
+                                            Text('review', style: TextStyle(color: Color(0xFFF5C14A), fontSize: 11)),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
                             ],
                           ),
