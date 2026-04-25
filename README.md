@@ -1,16 +1,15 @@
-# flutter_game_backlog_tracker
+## flutter_game_backlog_tracker
 
-A new Flutter project.
+# สำหรับตารางเวลาเล่นเกม
 
-## Getting Started
+<img width="300" height="" alt="localhost_63809_(iPhone 12 Pro) (1)" src="https://github.com/user-attachments/assets/082c07f2-e78e-484f-9e97-4eae620f13c9"/>
 
-This project is a starting point for a Flutter application.
+<img width="300" height="" alt="localhost_63809_(iPhone 12 Pro) (2)" src="https://github.com/user-attachments/assets/24aa8e72-0ad0-4d64-931b-e7b5f655920b" />
 
-A few resources to get you started if this is your first Flutter project:
+<img width="300" height="" alt="localhost_63809_(iPhone 12 Pro) (3)" src="https://github.com/user-attachments/assets/86ac8b68-b25a-43b8-8290-e06b6a123513" />
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img width="300" height="" alt="localhost_63809_(iPhone 12 Pro) (4)" src="https://github.com/user-attachments/assets/beb3971f-5939-497a-975e-09ae19542b76" />
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width="300" height="" alt="localhost_63809_(iPhone 12 Pro) (5)" src="https://github.com/user-attachments/assets/97b9e45c-27a8-4bb1-ab3f-703234c8f6cd" />
+
+
