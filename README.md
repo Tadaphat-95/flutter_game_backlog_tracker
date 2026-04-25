@@ -1,6 +1,6 @@
-## flutter_game_backlog_tracker
+# Flutter_Game_Backlog_Tracker
 
-# สำหรับตารางเวลาเล่นเกม
+## สำหรับตารางเวลาเล่นเกม
 
 <img width="300" height="" alt="localhost_63809_(iPhone 12 Pro) (1)" src="https://github.com/user-attachments/assets/082c07f2-e78e-484f-9e97-4eae620f13c9"/>
 
