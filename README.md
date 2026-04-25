@@ -12,4 +12,6 @@
 
 <img width="300" height="" alt="localhost_63809_(iPhone 12 Pro) (5)" src="https://github.com/user-attachments/assets/97b9e45c-27a8-4bb1-ab3f-703234c8f6cd" />
 
+<img width="300" height="" alt="localhost_63809_(iPhone 12 Pro) (7)" src="https://github.com/user-attachments/assets/3fc1d046-05bb-4e23-a44b-fdb72f404424" />
 
+<img width="300" height="" alt="localhost_63809_(iPhone 12 Pro) (8)" src="https://github.com/user-attachments/assets/15867684-b437-4e53-9160-9a2609e9969d" />
